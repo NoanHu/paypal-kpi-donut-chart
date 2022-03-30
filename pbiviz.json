@@ -1,0 +1,24 @@
+{
+  "visual": {
+    "name": "payPalKPIDonutChart",
+    "displayName": "PayPal KPI Donut Chart",
+    "guid": "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F",
+    "visualClassName": "payPalKPIDonutChart",
+    "version": "1.1.0",
+    "description": "This is a doughnut chart used to represent the percentage of data. It consists of an outer ring and an inner ring. You can adjust the thickness of the line, the radius, the color of the display, and so on. Specific details, you can go to this control to practice.",
+    "supportUrl": "DL-PayPal-IT-Analytics@paypal.com",
+    "gitHubUrl": "https://github.com/bliu5379/PayPal-PowerBI-Custom-Visuals"
+  },
+  "apiVersion": "4.2.0",
+  "author": {
+    "name": "Paypal_ITA",
+    "email": "DL-PayPal-IT-Analytics@paypal.com"
+  },
+  "assets": {
+    "icon": "assets/DonutChart.png"
+  },
+  "externalJS": null,
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null
+}
