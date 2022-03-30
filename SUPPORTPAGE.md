@@ -1,4 +1,4 @@
-# Paypal_ITA Support Page
+# Paypal_PPX Support Page
 
 ## Contact Us
 **Email**
