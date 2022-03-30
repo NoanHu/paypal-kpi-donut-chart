@@ -53,7 +53,7 @@ Set the overlap position of the outer ring and the inner ring.
 [DL-PayPal-PPX@paypal.com](mailto:DL-PayPal-PPX@paypal.com)
 
 **Issue Report**
-[https://github.com/bliu5379/PayPal-PowerBI-Custom-Visuals/issues/new](https://github.com/bliu5379/PayPal-PowerBI-Custom-Visuals/issues/new)
+[https://github.com/NoanHu/paypal-kpi-donut-chart/issues/new](https://github.com/NoanHu/paypal-kpi-donut-chart/issues/new)
 
 
 
