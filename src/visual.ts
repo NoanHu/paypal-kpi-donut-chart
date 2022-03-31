@@ -2,33 +2,15 @@ import powerbi from "powerbi-visuals-api";
 import * as d3 from "d3";
 import { path } from 'd3-path'
 import {VisualSettings} from "./settings";
-import DataViewObjects = powerbi.DataViewObjects;
-import DataViewCategoryColumn = powerbi.DataViewCategoryColumn;
 import IVisual = powerbi.extensibility.visual.IVisual;
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import EnumerateVisualObjectInstancesOptions = powerbi.EnumerateVisualObjectInstancesOptions;
 import VisualObjectInstanceEnumeration = powerbi.VisualObjectInstanceEnumeration;
 import VisualObjectInstance = powerbi.VisualObjectInstance;
-import DataViewObject = powerbi.DataViewObject;
 import VisualEnumerationInstanceKinds = powerbi.VisualEnumerationInstanceKinds;
 // powerbi.extensibility.utils.tooltip
-import { createTooltipServiceWrapper, TooltipEventArgs, ITooltipServiceWrapper, TooltipEnabledDataPoint } from "powerbi-visuals-utils-tooltiputils/lib/index.js";
-
-
-export function getValue<T>(objects: DataViewObjects, objectName: string, propertyName: string, defaultValue: T): T {
-if (objects) {
-  let object = objects[objectName];
-  if (object) {
-    let property: T = <T>object[propertyName];
-    if (property !== undefined) {
-      return property;
-    }
-  }
-}
-
-return defaultValue;
-}
+import { createTooltipServiceWrapper, ITooltipServiceWrapper } from "powerbi-visuals-utils-tooltiputils/lib/index.js";
 
 export function drawArc (context, x, y, radius, startAngle, endAngle) {
     context.arc(x, y, radius, startAngle, endAngle)
@@ -92,7 +74,7 @@ export function drawMain<T>(columnDisplayName: string, minLength: number, percen
         const textHeight = textElement.node().getBBox().height
         textElement
             .attr("x", center_x - textWidth/2)
-            .attr("y", center_y + textHeight/2 - 4)
+            .attr("y", center_y + 1.5 * fontSize - textHeight)
     }
     backgroundCircle();
     foregroundCircle(percent);
@@ -134,10 +116,9 @@ export class payPalKPIDonutChart implements IVisual {
             const minFontSize: number = enableCustomFontSizes ? fontSize : Math.round(minLength / 12) * 2;
             const percent: number = value * 100;
             const showColor: string = outerLineColor;
-            const outerDiv: JQuery = $("<div id='circle-graph'></div>").css({"backgroundColor": backgroundColor});
-            this.rootElement.append(outerDiv);
-            d3.select("#circle-graph").append("svg").attr("width", minLength).attr("height", minLength).append("g").
-                attr("id", "arc-container")
+            const container: JQuery = $("<div></div>").attr("id", "circle-graph").css({"backgroundColor": backgroundColor})
+            this.rootElement.append(container);
+            d3.select("#circle-graph").append("svg").attr("id", "arc-container").attr("width", minLength).attr("height", minLength)
             drawMain(columnDisplayName, minLength, percent, showColor, innerLineColor, minFontSize, fontBold, fontColor, fontItalic, fontFamily, valueDecimalPlaces, outerLineWidth, innerLineWidth, amendmentSize);
             this.tooltipServiceWrapper.addTooltip(
                 d3.select(".fore-circle"),
